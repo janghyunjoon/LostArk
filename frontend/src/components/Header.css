@@ -1,0 +1,56 @@
+/* 전체 헤더 영역 */
+div {
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: #202224;
+  color: #f4f4f4;
+  font-family: "Noto Sans KR", sans-serif;
+  padding: 40px;
+  position: relative;
+  border-radius: 20px;
+}
+
+/* 로고: 왼쪽 끝 */
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffd369;
+  cursor: pointer;
+}
+
+/* 랭킹 + 떠돌이 상인 그룹 */
+.middle {
+  position: absolute;
+  left: 20%;
+  transform: translateX(-70%);
+  display: flex;
+  gap: 40px; /* 둘 사이 간격 */
+}
+
+.middle div {
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.middle div:hover {
+  color: #ffd369;
+}
+
+/* 로그인: 오른쪽 끝 */
+.login {
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.login:hover {
+  color: #ffd369;
+}
