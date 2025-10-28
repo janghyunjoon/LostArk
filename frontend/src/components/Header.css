@@ -28,7 +28,7 @@ div {
 /* 랭킹 + 떠돌이 상인 그룹 */
 .middle {
   position: absolute;
-  left: 20%;
+  left: 25%;
   transform: translateX(-70%);
   display: flex;
   gap: 40px; /* 둘 사이 간격 */
