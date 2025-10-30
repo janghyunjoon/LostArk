@@ -46,9 +46,13 @@ div {
 
 /* 로그인: 오른쪽 끝 */
 .login {
+  background-color: #202224;
   font-size: 1.1rem;
   cursor: pointer;
   transition: color 0.2s ease;
+  position: relative;
+  z-index: 1000; /* ✅ 클릭 가능하게 */
+  cursor: pointer;
 }
 
 .login:hover {

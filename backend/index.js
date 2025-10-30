@@ -2,13 +2,16 @@ import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import cors from "cors";
+import mongoose from "mongoose"; // ✅ 추가
 
 dotenv.config(); // ✅ .env 파일 로드
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
 
-// ✅ 기본 설정
+// ✅ CORS 설정
+app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json());
+
 const BASE_URL = "https://developer-lostark.game.onstove.com";
 const HEADERS = {
   accept: "application/json",
@@ -33,7 +36,6 @@ app.get("/api/events", async (req, res) => {
     const response = await fetch(`${BASE_URL}/news/events`, { headers: HEADERS });
     let data = await response.json();
 
-    // ✅ StartDate / EndDate 뒤에 Z 자동 추가 (ISO 보정)
     if (Array.isArray(data)) {
       data = data.map((item) => ({
         ...item,
@@ -50,7 +52,7 @@ app.get("/api/events", async (req, res) => {
   }
 });
 
-// ✅ 공지 + 이벤트 통합 라우트
+// ✅ 공지 + 이벤트 통합
 app.get("/api/news", async (req, res) => {
   try {
     const [noticesRes, eventsRes] = await Promise.all([
@@ -63,7 +65,6 @@ app.get("/api/news", async (req, res) => {
       eventsRes.json(),
     ]);
 
-    // ✅ 이벤트 날짜 보정
     const events = Array.isArray(eventsRaw)
       ? eventsRaw.map((item) => ({
           ...item,
@@ -85,6 +86,18 @@ app.get("/api/news", async (req, res) => {
   }
 });
 
-// ✅ 서버 실행
+// ✅ MongoDB 연결 및 서버 실행
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Lost Ark API Proxy running on port ${PORT}`));
+const MONGO_URI = process.env.MONGO_URI;
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => {
+    console.log("✅ MongoDB 연결 성공");
+    app.listen(PORT, () => {
+      console.log(`🚀 Lost Ark API Proxy Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB 연결 실패:", err);
+  });
