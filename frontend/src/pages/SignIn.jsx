@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './Auth.css'
 
-const BASE_URL = '/api/user'
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
 
 const SignIn = () => {
     const [formData, setFormData] = useState({ username: '', password: '' })
@@ -20,9 +21,9 @@ const SignIn = () => {
         setMessage('')
 
         try {
-            const res = await axios.post(`${BASE_URL}/login`, formData, {
+            const res = await axios.post(`${BASE_URL}/api/user/login`, formData, {
                 withCredentials: true,
-            })
+            });
             setMessage('로그인 성공!')
             localStorage.setItem('token', res.data.token)
             setTimeout(() => navigate('/'), 1000)

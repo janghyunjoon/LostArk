@@ -4,6 +4,8 @@ import axios from 'axios'
 import './Auth.css'
 
 const BASE_URL = '/api/user'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
 
 const SignUp = () => {
     const [formData, setFormData] = useState({ username: '', password: '' })
@@ -16,19 +18,16 @@ const SignUp = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        setMessage('')
-
-        try {
-            const res = await axios.post(`${BASE_URL}/signup`, formData, {
-                withCredentials: true,
-            })
-            setMessage(res.data.message)
-            setTimeout(() => navigate('/signin'), 1500)
-        } catch (err) {
-            setMessage(err.response?.data?.message || '회원가입 중 오류가 발생했습니다.')
-        }
-    }
+  e.preventDefault();
+  try {
+    const res = await axios.post(`${API_BASE_URL}/api/user/signup`, formData, {
+      withCredentials: true,
+    });
+    setMessage(res.data.message);
+  } catch (err) {
+    setMessage(err.response?.data?.message || "회원가입 중 오류가 발생했습니다.");
+  }
+};
 
     return (
         <>

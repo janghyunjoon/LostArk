@@ -2,16 +2,23 @@ import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import cors from "cors";
-import mongoose from "mongoose"; // ✅ 추가
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser"; // ✅ 쿠키 파서 추가
+import userRoutes from "./routes/user.js"; // ✅ 확장자 꼭 붙여야 함!
 
 dotenv.config(); // ✅ .env 파일 로드
 
 const app = express();
 
 // ✅ CORS 설정
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 app.use(express.json());
+app.use(cookieParser());
 
+// ✅ Lost Ark API 기본 설정
 const BASE_URL = "https://developer-lostark.game.onstove.com";
 const HEADERS = {
   accept: "application/json",
@@ -85,6 +92,9 @@ app.get("/api/news", async (req, res) => {
     res.status(500).json({ error: "Lost Ark API 요청 실패" });
   }
 });
+
+// ✅ 회원가입·로그인 라우트 연결
+app.use("/api/user", userRoutes); // ✅ 핵심 라우트 추가
 
 // ✅ MongoDB 연결 및 서버 실행
 const PORT = process.env.PORT || 5000;

@@ -7,7 +7,7 @@ div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 1400px;
   height: 70px;
   background-color: #202224;
   color: #f4f4f4;
@@ -57,4 +57,29 @@ div {
 
 .login:hover {
   color: #ffd369;
+}
+.login-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome {
+  font-size: 1.1rem;
+  color: #ffd369;
+}
+
+.logout {
+  background-color: #303236;
+  border: 1px solid #ffd369;
+  color: #ffd369;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout:hover {
+  background-color: #ffd369;
+  color: #202224;
 }
