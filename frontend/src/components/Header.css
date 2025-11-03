@@ -64,22 +64,27 @@ div {
   gap: 12px;
 }
 
-.welcome {
-  font-size: 1.1rem;
-  color: #ffd369;
+/* Header.css */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logout {
-  background-color: #303236;
-  border: 1px solid #ffd369;
-  color: #ffd369;
-  padding: 6px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
+.right .auth-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.logout:hover {
-  background-color: #ffd369;
-  color: #202224;
+.user-name {
+  opacity: 0.9;
 }
+.logout{
+  background-color: #202224;
+}
+
+/* Header.css */
+.middle .board { cursor: pointer; }
+
+

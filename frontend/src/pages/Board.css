@@ -1,0 +1,82 @@
+.board-wrap {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tab {
+  padding: 8px 12px;
+  border: 1px solid #444;
+  background: #1f1f1f;
+  color: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tab.active {
+  border-color: #888;
+  background: #2a2a2a;
+}
+
+.board-table {
+  border: 1px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.thead, .tr {
+  display: grid;
+  grid-template-columns: 80px 1fr 140px 140px 100px 100px;
+  align-items: center;
+}
+.thead {
+  background: #232323;
+  font-weight: 600;
+  color: #ddd;
+}
+.th, .td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #2b2b2b;
+}
+.tr:hover {
+  background: #1e1e1e;
+}
+.td.title .cat {
+  opacity: 0.7;
+  margin-right: 6px;
+}
+.loading, .empty {
+  padding: 28px;
+  text-align: center;
+  color: #bbb;
+}
+
+.pagination {
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+.pagination button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1f1f1f;
+  color: #eee;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
