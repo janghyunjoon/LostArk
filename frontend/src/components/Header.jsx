@@ -101,7 +101,7 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="logo" onClick={() => navigate('/')}>logo</div>
+      <div className="logo" onClick={() => navigate('/')}><img src='./lostinfo.png'/></div>
 
       <div className="middle">
         <div className="ranking">랭킹</div>

@@ -1,0 +1,124 @@
+/* ===== PostDetail.css ===== */
+.detail-wrap {
+  width: 95%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #1c1e1f;
+  color: #f4f4f4;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 0 20px rgba(0,0,0,.45);
+}
+
+.detail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+}
+
+.detail-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.detail-title .cat {
+  opacity: .75;
+  margin-right: 6px;
+  font-weight: 500;
+}
+
+.head-actions { display: flex; gap: 8px; }
+
+.btn {
+  border: 1px solid #3a3f42;
+  background: #202325;
+  color: #f4f4f4;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.05); }
+.btn.ghost { background: #2a2d2f; }
+.btn.danger { background: #b42318; border-color: #b42318; }
+.btn.primary { background: #3b82f6; border-color: #3b82f6; }
+
+.detail-meta {
+  margin-top: 8px;
+  color: #b9b9b9;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.detail-meta .dot { opacity: .6; }
+
+.detail-content {
+  margin-top: 16px;
+  background: #202325;
+  border: 1px solid #2d3133;
+  border-radius: 12px;
+  padding: 16px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* ===== 댓글 ===== */
+.cmt-wrap { margin-top: 24px; }
+.cmt-title { font-size: 18px; margin: 0 0 10px; }
+
+.cmt-editor {
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 10px;
+}
+.cmt-editor textarea {
+  background: #202325;
+  color: #f4f4f4;
+  border: 1px solid #2d3133;
+  border-radius: 10px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+.cmt-editor .btn { height: 40px; }
+
+.cmt-list { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.cmt-empty { color: #b9b9b9; font-size: 14px; text-align: center; padding: 16px; border: 1px dashed #2a2d2f; border-radius: 10px; }
+
+.cmt-item {
+  position: relative;
+  background: #202325;
+  border: 1px solid #2d3133;
+  border-radius: 12px;
+  padding: 12px;
+}
+.cmt-item.pinned { border-color: #3b82f6; }
+.pin-badge {
+  position: absolute; top: -10px; left: 12px;
+  background: #3b82f6; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 999px;
+}
+
+.cmt-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.cmt-author { color: #cfd3d6; font-size: 13px; display: flex; gap: 6px; align-items: center; }
+.cmt-author .name { font-weight: 600; }
+.cmt-author .dot { opacity: .6; }
+
+.cmt-actions { display: flex; gap: 6px; }
+.pill {
+  border: 1px solid #3a3f42;
+  background: #1b1e20;
+  color: #f4f4f4;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.pill:hover { filter: brightness(1.05); }
+.pill.danger { background: #b42318; border-color: #b42318; }
+
+.cmt-body { margin-top: 8px; line-height: 1.6; white-space: pre-wrap; }

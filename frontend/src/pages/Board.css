@@ -1,9 +1,12 @@
+/* ===== Board.css (final) ===== */
+
 .board-wrap {
   max-width: 1100px;
   margin: 40px auto;
   padding: 0 16px;
 }
 
+/* 헤더(탭/버튼) */
 .board-header {
   display: flex;
   justify-content: space-between;
@@ -16,6 +19,7 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+
 .tab {
   padding: 8px 12px;
   border: 1px solid #444;
@@ -24,43 +28,86 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
 .tab.active {
   border-color: #888;
   background: #2a2a2a;
 }
 
+/* 테이블 프레임 */
 .board-table {
   border: 1px solid #333;
   border-radius: 12px;
   overflow: hidden;
 }
-.thead, .tr {
+
+/* 행/헤더 공통 레이아웃: 6열 고정
+   (번호 / 제목 / 글쓴이 / 등록일 / 조회 / 추천) */
+.thead,
+.tr {
   display: grid;
   grid-template-columns: 80px 1fr 140px 140px 100px 100px;
-  align-items: center;
+  align-items: center;           /* 세로 가운데 */
+  min-height: 48px;              /* 헤더/행 동일 높이 */
 }
+
+/* 헤더 스타일 */
 .thead {
   background: #232323;
   font-weight: 600;
   color: #ddd;
 }
-.th, .td {
-  padding: 12px 14px;
-  border-bottom: 1px solid #2b2b2b;
+
+/* 셀 공통: 크기/정렬/오버플로우 통일 */
+.th,
+.td {
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.3;
+  min-width: 0;                  /* 그리드 셀 내부에서 축소 가능 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;           /* 줄바꿈 방지(줄 맞춤 유지) */
+}
+
+/* 데이터 행 시각 구분선 & hover */
+.tr {
+  border-top: 1px solid #2b2b2b;
 }
 .tr:hover {
   background: #1e1e1e;
 }
+
+/* === 열 위치 명시: 자동배치 꼬임 방지 === */
+.th.no,     .td.no     { grid-column: 1; }
+.th.title,  .td.title  { grid-column: 2; }
+.th.author, .td.author { grid-column: 3; }
+.th.date,   .td.date   { grid-column: 4; }
+.th.views,  .td.views  { grid-column: 5; }
+.th.likes,  .td.likes  { grid-column: 6; }
+
+/* 제목 셀 내부(카테고리 + 제목) */
 .td.title .cat {
+  font-size: 13px;
   opacity: 0.7;
   margin-right: 6px;
 }
-.loading, .empty {
+
+.td.title .t {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+/* 빈 상태 / 로딩 */
+.loading,
+.empty {
   padding: 28px;
   text-align: center;
   color: #bbb;
 }
 
+/* 페이지네이션 */
 .pagination {
   margin: 16px 0;
   display: flex;
@@ -68,6 +115,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .pagination button {
   padding: 6px 12px;
   border-radius: 8px;
@@ -76,6 +124,7 @@
   color: #eee;
   cursor: pointer;
 }
+
 .pagination button:disabled {
   opacity: 0.4;
   cursor: default;

@@ -1,20 +1,21 @@
 // src/pages/Board.jsx
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Board.css";
 
 const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-const CATEGORIES = ["전체", "잡담", "정보", "인방", "웃긴글", "기타"];
+const CATEGORIES = ["전체", "잡담", "정보", "웃긴글", "기타"];
 
 export default function Board() {
+  const navigate = useNavigate();
+
   const [category, setCategory] = useState("전체");
   const [page, setPage] = useState(1);
   const [pageSize] = useState(20);
   const [rows, setRows] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  const token = localStorage.getItem("token");
 
   const totalPages = useMemo(
     () => Math.max(1, Math.ceil(total / pageSize)),
@@ -43,7 +44,7 @@ export default function Board() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, page]);
 
-  // 표의 번호는 "전체글 기준 역순 번호"로 계산 (DB 저장 불필요)
+  // 전체글 기준 역순 번호 계산
   const computeNo = (idx) => total - (page - 1) * pageSize - idx;
 
   const formatDate = (iso) => {
@@ -55,23 +56,15 @@ export default function Board() {
     return `${mm}-${dd} ${hh}:${mi}`;
   };
 
-  const writeDummy = async () => {
-    if (!token) return alert("로그인이 필요합니다.");
-    const title = prompt("제목을 입력하세요");
-    const content = prompt("내용을 입력하세요(테스트용)");
-    if (!title || !content) return;
+  const goWrite = () => {
+    const cat = category === "전체" ? "잡담" : category;
+    navigate(`/upload?category=${encodeURIComponent(cat)}`);
+  };
 
-    try {
-      await axios.post(
-        `${API}/api/board`,
-        { title, content, category: category === "전체" ? "잡담" : category },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setPage(1);
-      fetchList();
-    } catch (e) {
-      alert("등록 실패: " + (e.response?.data?.message || e.message));
-    }
+  // 제목 클릭/Enter로 상세 이동
+  const goDetail = (id) => {
+    if (!id) return;
+    navigate(`/board/${id}`);
   };
 
   return (
@@ -93,7 +86,7 @@ export default function Board() {
         </div>
 
         <div className="actions">
-          <button onClick={writeDummy}>글쓰기</button>
+          <button className="tab" onClick={goWrite}>글쓰기</button>
         </div>
       </div>
 
@@ -113,13 +106,25 @@ export default function Board() {
           <div className="empty">게시글이 없습니다.</div>
         ) : (
           rows.map((row, idx) => (
-            <div key={row._id} className="tr">
+            <div key={row._id || row.id || idx} className="tr">
               <div className="td no">{computeNo(idx)}</div>
-              <div className="td title">
+
+              {/* ✅ 제목을 클릭/Enter로 상세 이동 */}
+              <div
+                className="td title clickable"
+                role="button"
+                tabIndex={0}
+                onClick={() => goDetail(row._id || row.id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") goDetail(row._id || row.id);
+                }}
+                title="상세 보기"
+              >
                 <span className="cat">[{row.category}]</span>{" "}
                 <span className="t">{row.title}</span>
               </div>
-              <div className="td author">{row.author?.username || "-"}</div>
+
+              <div className="td author">{row.author?.username || "익명"}</div>
               <div className="td date">{formatDate(row.createdAt)}</div>
               <div className="td views">{row.views ?? 0}</div>
               <div className="td likes">{row.likes ?? 0}</div>

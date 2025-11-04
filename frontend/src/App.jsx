@@ -1,32 +1,33 @@
+// App.jsx
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import Main from './components/main';
 import Header from './components/Header';
 import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp'; 
+import SignUp from './pages/SignUp';
 import RequireAuth from './components/RequireAuth';
-import Board from './pages/Board'; 
+import Board from './pages/Board';
+import Upload from './pages/Upload';
+import PostDetail from './pages/PostDetail'; // ✅ 추가
 
-function App() {
+export default function App() {
   return (
     <>
       <Header />
-
       <Routes>
-        <Route
-          path="/board"
-          element={
-            <RequireAuth>
-              <Board />
-            </RequireAuth>
-          }
-        />
+        {/* 공개 라우트 */}
         <Route path="/" element={<Main />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/board/:id" element={<PostDetail />} /> {/* ✅ 추가 */}
+
+        {/* 보호 라우트 */}
+        <Route path="/board" element={
+          <RequireAuth><Board /></RequireAuth>
+        }/>
+        <Route path="/upload" element={
+          <RequireAuth><Upload /></RequireAuth>
+        }/>
       </Routes>
     </>
   );
 }
-
-export default App;

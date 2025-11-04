@@ -87,4 +87,7 @@ div {
 /* Header.css */
 .middle .board { cursor: pointer; }
 
-
+img{
+  width: 100px;
+  height: 50px;
+}
