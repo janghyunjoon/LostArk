@@ -8,6 +8,7 @@ import RequireAuth from './components/RequireAuth';
 import Board from './pages/Board';
 import Upload from './pages/Upload';
 import PostDetail from './pages/PostDetail'; // ✅ 추가
+import LostInfo from './pages/LostInfo';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/board/:id" element={<PostDetail />} /> {/* ✅ 추가 */}
+        <Route path="/lostinfo" element={<LostInfo />} />
 
         {/* 보호 라우트 */}
         <Route path="/board" element={

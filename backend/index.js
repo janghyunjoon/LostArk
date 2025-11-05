@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 // 라우트
 const userRoutes = require("./routes/user");
 const boardRoutes = require("./routes/Board"); // ⬅️ 파일명/경로 소문자 일치 확인
+const lostarkRoutes = require("./routes/lostark"); // ⬅️ 추가
 
 const app = express();
 
@@ -39,12 +40,13 @@ app.use((req, _res, next) => {
 });
 
 /* =========================
-   Lost Ark API 프록시
+   Lost Ark API 프록시 (공지/이벤트)
    ========================= */
 const BASE_URL = "https://developer-lostark.game.onstove.com";
 const HEADERS = {
   accept: "application/json",
-  authorization: `Bearer ${process.env.LOSTARK_API_KEY}`,
+  // 권장 표기: bearer (소문자)
+  authorization: `bearer ${process.env.LOSTARK_API_KEY}`,
 };
 
 // 공지사항
@@ -52,6 +54,7 @@ app.get("/api/notices", async (_req, res) => {
   try {
     const { data } = await axios.get(`${BASE_URL}/news/notices`, {
       headers: HEADERS,
+      timeout: 10000,
     });
     res.json({ list: Array.isArray(data) ? data : [] });
   } catch (err) {
@@ -65,6 +68,7 @@ app.get("/api/events", async (_req, res) => {
   try {
     const { data: raw } = await axios.get(`${BASE_URL}/news/events`, {
       headers: HEADERS,
+      timeout: 10000,
     });
     const data = Array.isArray(raw)
       ? raw.map((item) => ({
@@ -85,8 +89,8 @@ app.get("/api/events", async (_req, res) => {
 app.get("/api/news", async (_req, res) => {
   try {
     const [nRes, eRes] = await Promise.all([
-      axios.get(`${BASE_URL}/news/notices`, { headers: HEADERS }),
-      axios.get(`${BASE_URL}/news/events`, { headers: HEADERS }),
+      axios.get(`${BASE_URL}/news/notices`, { headers: HEADERS, timeout: 10000 }),
+      axios.get(`${BASE_URL}/news/events`, { headers: HEADERS, timeout: 10000 }),
     ]);
     const notices = Array.isArray(nRes.data) ? nRes.data : [];
     const events = Array.isArray(eRes.data)
@@ -109,6 +113,9 @@ app.get("/api/news", async (_req, res) => {
    ========================= */
 app.use("/api/user", userRoutes);
 app.use("/api/board", boardRoutes);
+
+// 🔹 Lost Ark OpenAPI 캐릭터/아머리 프록시 라우트 (신규)
+app.use("/api/lostark", lostarkRoutes);
 
 /* =========================
    헬스체크

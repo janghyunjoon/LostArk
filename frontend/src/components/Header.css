@@ -1,75 +1,101 @@
-/* 전체 헤더 영역 */
-div {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+img { display: block; max-width: 100%; }
 
+/* 헤더 컨테이너 */
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 1400px;
-  height: 70px;
+  justify-content: space-between;
+  gap: 16px;
+
+  /* 레이아웃 */
+  width: 100%;
+  max-width: 1400px;          /* 화면 중앙 고정 */
+  margin: 0 auto;
+  height: 72px;
+
+  /* 스타일 */
   background-color: #202224;
   color: #f4f4f4;
   font-family: "Noto Sans KR", sans-serif;
-  padding: 40px;
-  position: relative;
+  padding: 12px 20px;
   border-radius: 20px;
 }
 
-/* 로고: 왼쪽 끝 */
+/* 로고(좌측) */
 .logo {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #ffd369;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
+  min-width: 140px;           /* 가운데가 줄어들 때 로고가 눌리지 않도록 */
+}
+.logo img {
+  width: 100px;
+  height: 50px;
+  object-fit: contain;
 }
 
-/* 랭킹 + 떠돌이 상인 그룹 */
+/* 가운데 영역: 검색 + 메뉴 */
 .middle {
-  position: absolute;
-  left: 25%;
-  transform: translateX(-70%);
+  /* 핵심: 절대배치 제거 + flex:1로 가변 너비 확보 + 중앙 정렬 */
+  position: static;
   display: flex;
-  gap: 40px; /* 둘 사이 간격 */
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex: 1 1 auto;
+  min-width: 420px;
 }
 
-.middle div {
+/* 메뉴 아이템 */
+.middle .ranking,
+.middle .merchant,
+.middle .board {
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
-
-.middle div:hover {
+.middle .ranking:hover,
+.middle .merchant:hover,
+.middle .board:hover {
   color: #ffd369;
 }
 
-/* 로그인: 오른쪽 끝 */
-.login {
-  background-color: #202224;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  position: relative;
-  z-index: 1000; /* ✅ 클릭 가능하게 */
-  cursor: pointer;
-}
-
-.login:hover {
-  color: #ffd369;
-}
-.login-section {
+/* 검색 박스 */
+.search {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  /* 검색이 너무 넓어져 메뉴를 밀지 않도록 적절히 제한 */
+  max-width: 360px;
+  width: clamp(220px, 28vw, 320px);
 }
 
-/* Header.css */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.search-input {
+  flex: 1 1 auto;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #3a3b3d;
+  background: #1f1f1f;
+  color: #eee;
+  outline: none;
 }
+.search-input::placeholder { color: #888; }
+
+.search-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #3a3b3d;
+  background: #2a2a2a;
+  color: #eee;
+  cursor: pointer;
+}
+.search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* 우측 로그인/유저 영역 */
+.right { display: flex; align-items: center; }
 
 .right .auth-area {
   display: flex;
@@ -77,17 +103,46 @@ div {
   gap: 10px;
 }
 
-.user-name {
-  opacity: 0.9;
+.user-name { opacity: 0.9; }
+
+.login,
+.logout {
+  background: transparent;
+  border: 1px solid #3a3b3d;
+  color: #f4f4f4;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  z-index: 1;
 }
-.logout{
-  background-color: #202224;
+.login:hover,
+.logout:hover {
+  color: #ffd369;
+  border-color: #ffd369;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;         /* 검색과 유저영역 사이 여백 */
 }
 
-/* Header.css */
-.middle .board { cursor: pointer; }
+/* 오른쪽에 들어가는 검색 전용 미세조정 */
+.right .right-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 4px; /* username과 너무 붙지 않게 살짝 띄움 */
+}
 
-img{
-  width: 100px;
-  height: 50px;
+/* 검색창 폭: 오른쪽 공간에 적당히 들어가도록 */
+.right .search-input {
+  width: 200px;      /* 필요시 180~240px 사이로 조절 */
+  padding: 8px 10px;
+}
+
+/* 버튼 살짝 컴팩트 */
+.right .search-btn {
+  padding: 8px 10px;
 }
