@@ -113,6 +113,8 @@ app.get("/api/news", async (_req, res) => {
    ========================= */
 app.use("/api/user", userRoutes);
 app.use("/api/board", boardRoutes);
+app.use("/api/lostark", require("./routes/lostark"));
+
 
 // 🔹 Lost Ark OpenAPI 캐릭터/아머리 프록시 라우트 (신규)
 app.use("/api/lostark", lostarkRoutes);

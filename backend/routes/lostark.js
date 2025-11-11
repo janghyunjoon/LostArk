@@ -11,11 +11,39 @@ const HEADERS = {
   accept: "application/json",
   authorization: `bearer ${API_JWT}`,
 };
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 // ---- 간단 메모리 캐시 ----
 const cache = new Map(); // key -> { data, expire }
 const TTL_MS = 30 * 1000;
 
+router.get("/gems/:name", async (req, res) => {
+  const { name } = req.params;
+  try {
+    const r = await fetch(
+      `${LOSTARK_API_BASE}/armories/gems/${encodeURIComponent(name)}`,
+      {
+        headers: {
+          Authorization: `bearer ${API_KEY}`,
+        },
+      }
+    );
+
+    if (!r.ok) {
+      return res.status(r.status).json({
+        message: "Lost Ark Gems API error",
+        status: r.status,
+      });
+    }
+
+    const data = await r.json();
+    return res.json(data);
+  } catch (err) {
+    console.error("Gems route error:", err);
+    return res.status(500).json({ message: "Gems proxy error" });
+  }
+});
 function getCache(key) {
   const hit = cache.get(key);
   if (!hit) return null;
