@@ -1,0 +1,66 @@
+.lostinfo-cardProfile {
+  background: #1f2224;
+  border: 1px solid #2e3134;
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.lostinfo-profileImg {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #141618;
+}
+
+.lostinfo-profileImgPlaceholder {
+  height: 340px;
+  border-radius: 10px;
+  background: #141618;
+  border: 1px dashed #3a3d41;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 12px;
+}
+
+.lostinfo-profileBody {
+  margin-top: 12px;
+}
+
+.lostinfo-profileNameRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.lostinfo-profileName {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.lostinfo-profileClass {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.lostinfo-profileItemLevel {
+  margin-top: 4px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f4b9ff;
+}
+
+.lostinfo-profileMetaGrid {
+  margin-top: 8px;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.lostinfo-label {
+  opacity: 0.75;
+  margin-right: 6px;
+}

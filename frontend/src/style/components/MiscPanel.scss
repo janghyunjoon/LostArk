@@ -1,0 +1,88 @@
+/* 나침반/부적 태그 줄 */
+.lostinfo-rowLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.lostinfo-rowTag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #222528;
+  border: 1px solid #33363a;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.lostinfo-rowTagText {
+  white-space: nowrap;
+}
+
+/* 보석 카드 */
+.lostinfo-gemCard {
+  margin-top: 14px;
+  background: #1f2224;
+  border: 1px solid #2e3134;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.lostinfo-gemRow {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 2px;
+}
+
+.lostinfo-gemCell {
+  background: #222528;
+  border: 1px solid #33363a;
+  border-radius: 8px;
+  padding: 6px;
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  min-width: 70px;
+}
+
+.lostinfo-gemIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.lostinfo-gemIconPlaceholder {
+  width: 28px;
+  height: 28px;
+  border: 1px dashed #444;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  color: #888;
+}
+
+.lostinfo-gemName {
+  font-size: 11px;
+  text-align: center;
+  opacity: 0.85;
+}
+
+.lostinfo-gemEffectsRow {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.lostinfo-gemEffectTag {
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #252931;
+  border: 1px solid #343840;
+}

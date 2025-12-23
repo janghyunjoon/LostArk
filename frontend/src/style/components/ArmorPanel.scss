@@ -1,0 +1,29 @@
+/* 엘릭서/초월 요약 */
+.lostinfo-summaryRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.lostinfo-summaryBox {
+  background: #1b1e21;
+  border: 1px solid #32363a;
+  border-radius: 8px;
+  padding: 8px;
+  display: grid;
+  gap: 4px;
+}
+
+.lostinfo-summaryTitle {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.lostinfo-summaryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.95;
+}

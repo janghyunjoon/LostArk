@@ -1,0 +1,200 @@
+.lostinfo-wrap {
+  width: 95%;
+  max-width: 1400px;
+  margin: 28px auto;
+  color: #eee;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.lostinfo-headerRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.lostinfo-title {
+  margin: 0;
+}
+
+.lostinfo-backBtn {
+  background: #2a2a2a;
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+
+  &:hover {
+    filter: brightness(1.06);
+  }
+}
+
+.lostinfo-skeleton {
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.lostinfo-error {
+  background: #2a1f1f;
+  border: 1px solid #633;
+  color: #ff9b9b;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 13px;
+}
+
+.lostinfo-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.lostinfo-rightCol {
+  display: grid;
+  gap: 12px;
+}
+
+/* 공통 카드/타이틀 */
+.lostinfo-card {
+  background: #1f2224;
+  border: 1px solid #2e3134;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.lostinfo-h3 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.lostinfo-subTitle {
+  font-size: 12px;
+  opacity: 0.85;
+  margin: 8px 0 6px;
+}
+
+.lostinfo-empty {
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+/* 공통 리스트/아이템 행 */
+.lostinfo-colList {
+  display: grid;
+  gap: 6px;
+}
+
+.lostinfo-itemRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #222528;
+  border: 1px solid #33363a;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.lostinfo-itemIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex: 0 0 32px;
+}
+
+.lostinfo-itemBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.lostinfo-itemHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lostinfo-itemName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 420px;
+  font-size: 13px;
+}
+
+/* 배지 */
+.lostinfo-badgeLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.lostinfo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1;
+  background: #3a3f46;
+}
+
+.lostinfo-badgeMuted {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1;
+  background: #2f343a;
+}
+
+.lostinfo-qBadge {
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  background: #2d3136;
+  border: 1px solid #444;
+}
+
+.lostinfo-gradeBadge {
+  margin-left: 6px;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #2d3034;
+  border: 1px solid #444;
+  opacity: 0.9;
+}
+
+/* 티어/상태 배지 (utils의 tierClass와 매칭) */
+.tier-high {
+  background: #f0a74b;
+}
+.tier-mid {
+  background: #7aa7ff;
+}
+.tier-low {
+  background: #69c3ff;
+}
+
+/* 보주 위험 옵션 등 */
+.badge-default {
+  background: #3a3f46;
+}
+.badge-danger {
+  background: #5a2e2e;
+}
